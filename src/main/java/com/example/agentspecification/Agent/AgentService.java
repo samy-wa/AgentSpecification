@@ -26,9 +26,18 @@ public class AgentService {
     public Agent addNewAgents(Agent agent) {
 
         Optional<Agent> optionalAgent = agentRepository.findAgentByAgentNumber(agent.getAgentNumber());
-        if(optionalAgent.isPresent()) {
+        if (optionalAgent.isPresent()) {
             throw new IllegalStateException("Agent Number is taken");
         }
         return agentRepository.save(agent);
+    }
+
+    @GetMapping
+    public Agent getAgent(Long agentId) {
+        boolean exists = agentRepository.existsById(agentId);
+        if(!exists) {
+            throw  new IllegalStateException("Agent with id " + agentId + " does not exists");
+        }
+        return  agentRepository.findByAgentId(agentId);
     }
 }

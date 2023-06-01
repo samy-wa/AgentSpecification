@@ -1,8 +1,7 @@
 package com.example.agentspecification.Agent;
 
 import jakarta.persistence.*;
-
-import java.math.BigDecimal;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Table
@@ -18,6 +17,7 @@ public class Agent {
             generator = "agent_sequence"
     )
     private Long id;
+    @Column(unique=true)
     private String AgentNumber;
     private Title Title;
     private String FirstName;

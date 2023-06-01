@@ -20,6 +20,11 @@ public class AgentController {
         return agentService.getAgents();
     }
 
+    @GetMapping(path = "{agentId}")
+    public Agent getAgentById(@PathVariable("agentId") Long agentId){
+        return agentService.getAgent(agentId);
+    }
+
     @PostMapping
     public Agent addAgent(@RequestBody Agent agent) {
         return agentService.addNewAgents(agent);
